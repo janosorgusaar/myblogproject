@@ -1,0 +1,22 @@
+{
+  "name": "myblogproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janosorgusaar/myblogproject.git"
+  },
+  "author": "jo",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/janosorgusaar/myblogproject/issues"
+  },
+  "homepage": "https://github.com/janosorgusaar/myblogproject#readme",
+  "dependencies": {
+    "typescript": "^4.5.5"
+  }
+}
