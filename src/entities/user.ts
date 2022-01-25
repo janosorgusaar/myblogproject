@@ -4,11 +4,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-  @Column()
+  @Column('varchar', { length: 150 })
   firstName: string;
-  @Column()
+  @Column('varchar', { length: 150 })
   middleName: string;
-  @Column()
+  @Column('varchar', { length: 150 })
   lastName: string;
   @Column()
   mobile: string;
