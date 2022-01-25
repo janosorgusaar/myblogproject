@@ -36,8 +36,5 @@ export class User extends BaseEntity {
     return getConnection().getRepository('User').save(this);
   }
 }
-// const myFunction = (input: { isString: boolean }) => {
-//   let variable = input.isString ? 'Hello' : 123;
-//   return input;
-// };
+
 export default User;

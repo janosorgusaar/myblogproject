@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import express, { Request, Response } from 'express';
 import { getConnection } from 'typeorm';
 import User from '../../entities/user';
@@ -21,7 +22,10 @@ router.post('/', async (req: Request, res: Response) => {
       email
     } = req.body as UserInput;
 
+    // TODO: validation for inputs
+
     const user = new User();
+    user.id = uuidv4();
     user.firstName = firstName;
     user.middleName = !null ? middleName : '';
     user.lastName = lastName;
@@ -40,3 +44,4 @@ router.post('/', async (req: Request, res: Response) => {
     });
   }
 });
+export default router;

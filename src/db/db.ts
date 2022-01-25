@@ -8,5 +8,3 @@ export async function openDatabaseConnection() {
   }
   return conn;
 }
-
-openDatabaseConnection();
