@@ -34,7 +34,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
     res.send(newUser);
   } catch (error) {
-    res.send({ message: 'Unable to create new user', message: error.message });
+    res.send({ error: 'Unable to create new user', message: error.message });
   }
 
   return;
