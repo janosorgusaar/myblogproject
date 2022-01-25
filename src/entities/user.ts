@@ -22,7 +22,9 @@ class User {
   intro: string;
   @Column()
   profile: string;
-  @Column()
 }
-
+const myFunction = (input: { isString: boolean }) => {
+  let variable = input.isString ? 'Hello' : 123;
+  return input;
+};
 export default User;
