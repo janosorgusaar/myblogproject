@@ -1,7 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 @Entity()
-class User {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column('varchar', { length: 150 })
@@ -10,21 +16,23 @@ class User {
   middleName: string;
   @Column('varchar', { length: 150 })
   lastName: string;
-  @Column()
+  @Column('varchar')
   mobile: string;
-  @Column()
+  @Column('varchar', { length: 320, unique: true })
   email: string;
   @Column()
-  registeredAt: Date;
-  @Column()
   lastLogin: Date;
-  @Column()
+  @Column('tinytext', { nullable: true })
   intro: string;
-  @Column()
+  @Column('text', { nullable: true })
   profile: string;
+  @CreateDateColumn()
+  createdAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
-const myFunction = (input: { isString: boolean }) => {
-  let variable = input.isString ? 'Hello' : 123;
-  return input;
-};
+// const myFunction = (input: { isString: boolean }) => {
+//   let variable = input.isString ? 'Hello' : 123;
+//   return input;
+// };
 export default User;
