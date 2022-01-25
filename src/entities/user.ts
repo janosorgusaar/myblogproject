@@ -4,11 +4,12 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  getConnection
+  getConnection,
+  BaseEntity
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column('varchar', { length: 150 })
