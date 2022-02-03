@@ -1,27 +1,29 @@
 import {
-  Column,
-  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
   UpdateDateColumn,
-  getConnection,
-  BaseEntity
+  BaseEntity,
+  OneToMany
 } from 'typeorm';
-
+import Post from './Post';
+// Dekoraator käsk, mis ütleb Typeormile, et tegemist on entity ehk
+// andmebaasi objekti kirjeldusega
 @Entity()
-export class User extends BaseEntity {
+export default class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
   @Column('varchar', { length: 150 })
   firstName: string;
   @Column('varchar', { length: 150, nullable: true })
   middleName?: string;
   @Column('varchar', { length: 150 })
-  lastName: string;
+  lastName!: string;
   @Column('varchar')
-  mobile: string;
+  mobile!: string;
   @Column('varchar', { length: 320, unique: true })
-  email: string;
+  email!: string;
   @Column({ default: () => 'CURRENT_TIMESTAMP' })
   lastLogin: Date;
   @Column('tinytext', { nullable: true })
@@ -32,9 +34,15 @@ export class User extends BaseEntity {
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
-  save() {
-    return getConnection().getRepository('User').save(this);
-  }
-}
 
-export default User;
+  @OneToMany(() => Post, (post) => post.author)
+  posts: Post[];
+  // Eager loading lisab teise tabelist andmed alati juurde iga päringuga
+  // @OneToMany(() => Post, (post) => post.author, { eager: true })
+  // posts: Post[];
+
+  // Lazy loading lisab teise tabelist andmed kui seda on vaja
+  // (nt. salvestamise User.post.save(post))
+  // @OneToMany(() => Post, (post) => post.author)
+  // posts: Promise<Post[]>;
+}
