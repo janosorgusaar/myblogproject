@@ -1,7 +1,8 @@
-import { v4 as uuidv4 } from 'uuid';
+// import { randomUUID } from 'crypto';
+import { v4 as uuidV4 } from 'uuid';
 import express, { Request, Response } from 'express';
-import { getConnection } from 'typeorm';
-import User from '../../entities/user';
+// import { getConnection } from 'typeorm';
+import User from '../../entities/User';
 const router = express.Router();
 
 interface UserInput {
@@ -23,11 +24,12 @@ router.post('/', async (req: Request, res: Response) => {
     } = req.body as UserInput;
 
     // TODO: validation for inputs
-
+    
     const user = new User();
-    user.id = uuidv4();
+    user.id = uuidV4();
+    // user.id = randomUUID();
     user.firstName = firstName;
-    user.middleName = !null ? middleName : '';
+    user.middleName = middleName = !null ? middleName : '';
     user.lastName = lastName;
     user.mobile = mobile;
     user.email = email;
@@ -36,12 +38,22 @@ router.post('/', async (req: Request, res: Response) => {
     if (!newUser) {
       throw new Error();
     }
-    return res.send(newUser);
+
+    return res.json(newUser);
   } catch (error) {
-    return res.send({
+    if (error instanceof Error) {
+      console.log({ error: error.message });
+      return res.json({
+        error: 'Unable to create new user',
+        message: error.message
+      });
+    }
+
+    return res.json({
       error: 'Unable to create new user',
-      message: error.message
+      message: 'unknown error'
     });
   }
 });
+
 export default router;

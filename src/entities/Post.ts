@@ -1,7 +1,7 @@
 import {
   BaseEntity,
   PrimaryGeneratedColumn,
-  JoinColumn,
+  // JoinColumn,
   ManyToOne,
   Column,
   CreateDateColumn,
@@ -18,10 +18,10 @@ export default class Post extends BaseEntity {
   title: string;
   @Column()
   authorId!: string;
-  @Column()
-  parentId!: string;
+  // @Column()
+  // parentId: string;
   @Column('varchar', { length: 100 })
-  metaTitle?: string;
+  metaTitle: string;
   @Column('tinytext')
   summary: string;
   @Column('boolean', { default: false })
@@ -39,8 +39,8 @@ export default class Post extends BaseEntity {
   author: Promise<User>;
 
   // Parent post
-  @ManyToOne(() => Post, (post) => post.parentId, {
-    createForeignKeyConstraints: true
-  })
-  parentPost: Promise<User>;
+  // @ManyToOne(() => Post, (post) => post.parentId, {
+  //   createForeignKeyConstraints: true
+  // })
+  // parentPost: Promise<Post>;
 }

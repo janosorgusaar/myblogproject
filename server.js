@@ -1,10 +1,9 @@
 const http = require('http');
 
-
-const server = http.createServer((req,res)=>{
+const server = http.createServer((req, res)=>{
     res.statuscode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello!');
+    res.end('Hello');
 });
 
 server.listen(3000,()=>{

@@ -37,11 +37,11 @@ export default class User extends BaseEntity {
 
   @OneToMany(() => Post, (post) => post.author)
   posts: Post[];
-  // Eager loading lisab teise tabelist andmed alati juurde iga päringuga
+  // Eager loading lisab teise tabeli andmed alati juurde iga päringuga
   // @OneToMany(() => Post, (post) => post.author, { eager: true })
   // posts: Post[];
 
-  // Lazy loading lisab teise tabelist andmed kui seda on vaja
+  // Lazy loading lisab teisest tabelist andmed kui seda on vaja
   // (nt. salvestamise User.post.save(post))
   // @OneToMany(() => Post, (post) => post.author)
   // posts: Promise<Post[]>;
